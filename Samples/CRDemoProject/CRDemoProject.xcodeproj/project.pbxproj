@@ -322,7 +322,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.rakuten.crashreport.ent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = R_Enterprise7th_180920;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

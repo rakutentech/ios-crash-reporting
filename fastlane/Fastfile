@@ -12,8 +12,13 @@ platform :ios do
     set_info_plist_value(path: "./Tests/Info.plist",
                          key: "RPTSubscriptionKey",
                          value: ENV['RCR_SUBSCRIPTION_KEY'] || "SUBSCRIPTION_KEY")
-    shared_tests(options)
+
+    update_project_team(
+      path: "./Samples/CRDemoProject/CRDemoProject.xcodeproj",
+      teamid: ENV['REM_FL_EXPORT_TEAM_ID'] || "UNDEFINED"
+    )
     shared_sample(options)
+    shared_tests(options)
   end
 end
 # vim:syntax=ruby:et:sts=2:sw=2:ts=2:ff=unix:
