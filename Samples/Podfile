@@ -1,0 +1,11 @@
+source "https://github.com/CocoaPods/Specs.git"
+
+project 'CRDemoProject/CRDemoProject.xcodeproj'
+workspace 'Samples.xcworkspace'
+
+platform :ios, '9.0'
+use_frameworks!
+
+pod 'RCrashReporting', :inhibit_warnings => false, :path => '../RCrashReporting.podspec'
+
+target 'CRDemoProject'

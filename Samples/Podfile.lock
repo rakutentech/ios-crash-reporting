@@ -1,0 +1,25 @@
+PODS:
+  - KSCrash/Recording (1.15.18):
+    - KSCrash/Recording/Tools (= 1.15.18)
+  - KSCrash/Recording/Tools (1.15.18)
+  - RCrashReporting (0.4.0):
+    - KSCrash/Recording
+
+DEPENDENCIES:
+  - RCrashReporting (from `../RCrashReporting.podspec`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - KSCrash
+
+EXTERNAL SOURCES:
+  RCrashReporting:
+    :path: "../RCrashReporting.podspec"
+
+SPEC CHECKSUMS:
+  KSCrash: 5394936f41e5c1ef7b79cf79b30d53299b0c160e
+  RCrashReporting: 692b4511b3471cf5ffc53edfbe0b333429f6e50d
+
+PODFILE CHECKSUM: c121788bedf1b804bc7a7c65975be9bd1bb8de16
+
+COCOAPODS: 1.5.3

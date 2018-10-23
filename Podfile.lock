@@ -1,0 +1,35 @@
+PODS:
+  - KSCrash/Recording (1.15.18):
+    - KSCrash/Recording/Tools (= 1.15.18)
+  - KSCrash/Recording/Tools (1.15.18)
+  - OCMock (3.4.1)
+  - RCrashReporting (0.4.0):
+    - KSCrash/Recording
+
+DEPENDENCIES:
+  - OCMock (from `https://github.com/erikdoe/ocmock`)
+  - RCrashReporting (from `./RCrashReporting.podspec`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - KSCrash
+
+EXTERNAL SOURCES:
+  OCMock:
+    :git: https://github.com/erikdoe/ocmock
+  RCrashReporting:
+    :path: "./RCrashReporting.podspec"
+
+CHECKOUT OPTIONS:
+  OCMock:
+    :commit: 812b5db86a46db8a4a5d45464fe3229532fd9f29
+    :git: https://github.com/erikdoe/ocmock
+
+SPEC CHECKSUMS:
+  KSCrash: 5394936f41e5c1ef7b79cf79b30d53299b0c160e
+  OCMock: 2cd0716969bab32a2283ff3a46fd26a8c8b4c5e3
+  RCrashReporting: 692b4511b3471cf5ffc53edfbe0b333429f6e50d
+
+PODFILE CHECKSUM: 89b112b114420d2bffe20b582676bb4d7f0111ff
+
+COCOAPODS: 1.5.3

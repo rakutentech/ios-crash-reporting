@@ -1,0 +1,5 @@
+# This file will get merged with ~/Doxyfile before running Doxygen
+PROJECT_NAME     = RCrashReporting
+PROJECT_BRIEF    = ""
+INPUT           += RCrashReporting
+IGNORE_PREFIX    = RCrashReporting
