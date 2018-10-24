@@ -1,5 +1,5 @@
-[![Build Status]()](https://travis-ci.org/rakutentech/ios-crash-reporting)
-[![codecov]()](https://codecov.io/gh/rakutentech/ios-crash-reporting)
+[![Build Status](https://travis-ci.org/rakutentech/ios-crash-reporting.svg?branch=master)](https://travis-ci.org/rakutentech/ios-crash-reporting)
+[![codecov](https://codecov.io/gh/rakutentech/ios-crash-reporting/branch/master/graph/badge.svg)](https://codecov.io/gh/rakutentech/ios-crash-reporting)
 
 
 # Crash Reporting
