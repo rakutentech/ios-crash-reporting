@@ -14,7 +14,6 @@ This module supports iOS 8.0 and above. It has been tested on iOS 8.4 and above.
 
 To use the module your `Podfile` should contain:
 
-    source 'https://github.com/CocoaPods/Specs.git'
 
     pod 'RCrashReporting', :git => 'https://github.com/rakutentech/ios-crash-reporting.git'
 
