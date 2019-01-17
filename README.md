@@ -23,11 +23,12 @@ Run `pod install` to install the module and its dependencies.
 
 Currently we do not host any publicly accessible backend APIs.
 
-You must specify the following values in your application's info.plist in order to use the module:
+You must specify the following values in your application's `info.plist` in order to use the module:
 
 | Key | Value |
 |------|------|
-| `RPTSubscriptionKey` | Only internal Rakuten developers can setup a key. If not a Rakuten developer set a non-empty string |
+| `RPTSubscriptionKey` | Subscription key from Rakuten internal portal |
+| `RPTRelayAppID` | Application ID from Rakuten internal portal |
 | `RCRConfigAPIEndpoint` | Endpoint to fetch the module configuration |
 
 ## Contributing

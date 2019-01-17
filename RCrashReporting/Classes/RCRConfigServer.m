@@ -74,31 +74,25 @@ static NSString* const STICKY = @"sticky";
     __block NSNumber* sticky;
     __block NSNumber* override;
     
-    NSDictionary* dictionaryToSend = @{
-                               PLATFORM:    [RCRDeviceInformation getDeviceOS],
-                               APP_ID:      [RCRDeviceInformation getDeviceAppId],
-                               APP_VERSION: [RCRRequestUtil getAppVersionAndBuild],
-                               DEVICE_ID:   [RCRDeviceInformation getDeviceId],
-                               SDK_VERSION: CURRENT_SDK_VERSION
-                               };
-    
     NSBundle *bundle = NSBundle.mainBundle;
-    NSURL *configURL = [NSURL URLWithString:(NSString *)[bundle objectForInfoDictionaryKey:@"RCRConfigAPIEndpoint"]];
+    
+    NSURL *base = [NSURL URLWithString:(NSString *)[bundle objectForInfoDictionaryKey:@"RCRConfigAPIEndpoint"]];
 #if DEBUG
-    NSAssert(configURL, @"Your application's Info.plist must contain a key 'RCRConfigAPIEndpoint' set to the endpoint URL of your Crash Config API");
+    NSAssert(base, @"Your application's Info.plist must contain a key 'RCRConfigAPIEndpoint' set to the endpoint URL of your Crash Config API");
 #endif
     
-    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:configURL];
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionaryToSend
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
+    NSString *relayAppID = [bundle objectForInfoDictionaryKey:@"RPTRelayAppID"];
+#if DEBUG
+    NSAssert(relayAppID.length, @"Your application's Info.plist must contain a key 'RPTRelayAppID' set to the application ID for your Mission Control app");
+#endif
     
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:jsonData]; // Setting body of request.
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    NSString* postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]]; // Length of body.
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    NSString *path = [NSString stringWithFormat:@"config/configuration/%@", relayAppID];
+    NSURL *url = [base URLByAppendingPathComponent:path];
+    
+    NSURLComponents *components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO];
+    components.query = [NSString stringWithFormat:@"sdk_version=%@&app_version=%@", RCRSDKVersion, [bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
+    
+    NSURL *configURL = components.URL;
     
     // Semaphore to wait for config server response before continuing SDK code.
     // This will not hang the application because it is done asynch.
@@ -110,8 +104,8 @@ static NSString* const STICKY = @"sticky";
 
     NSURLSession* session = [NSURLSession sessionWithConfiguration:sessionConfig];
     
-    [[session dataTaskWithRequest:request
-                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [[session dataTaskWithURL:configURL
+            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                     if (error)
                     {
                         NSLog(@"Error: %@", error);
@@ -128,7 +122,7 @@ static NSString* const STICKY = @"sticky";
                                                                                    error:&error];
                              
                             constants.installURL = [json valueForKeyPath:@"data.endpoints.install"];
-                            constants.sessionURL = [json valueForKeyPath:@"data.endpoints.sessions"];
+                            constants.sessionURL = [json valueForKeyPath:@"data.endpoints.session"];
                             
                             enabled = [json valueForKeyPath:@"data.enabled"];
                             sticky = [json valueForKeyPath:@"data.sticky"];

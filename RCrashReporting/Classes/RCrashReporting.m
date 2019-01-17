@@ -23,10 +23,6 @@ RCRReachability* reach;
 
 + (void)load
 {
-	#ifdef DEBUG
-    	NSLog(@"CrashReporting installed successfully");
-	#endif
-  
     // Create dispatch queue for asych tasks.
     sharedQueue = [RCrashReporting sharedQueue];
     
@@ -51,6 +47,10 @@ RCRReachability* reach;
 + (void)initializeCrashReporting
 {
     if ([RCRConfigServer checkConfigServer]){
+        
+#ifdef DEBUG
+        NSLog(@"Valid config received. Now initialize crash handler and reporting.");
+#endif
         
         // Install KSCrash handler to record crashes.
         KSCrash* handler = [KSCrash sharedInstance];

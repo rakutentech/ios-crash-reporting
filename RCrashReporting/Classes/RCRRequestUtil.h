@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 
+extern NSString* const RCRSDKVersion;
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
